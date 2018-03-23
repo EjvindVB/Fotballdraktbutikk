@@ -1,0 +1,143 @@
+*{
+    margin:0;
+    box-sizing:border-box;
+    padding:0;
+    Font-family:sans-serif;
+}
+
+
+body {
+    background-color: lightgray;
+}
+
+nav:hover {
+    background: aquamarine;
+
+}
+
+nav {
+    height: 70px;
+    background-color: #1769a8;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    flex-direction: row;
+}
+nav a:hover {
+    text-decoration: underline;
+
+}
+
+nav a{
+    flex-grow: 1;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    display: block;
+}
+
+
+main {
+    height: auto;
+    background-color: #848684;
+    padding: 40px;
+}
+
+main div {
+    padding: 20px;
+}
+
+main #knutter{
+    display: flex;
+    width: 1300px;
+
+}
+main #knutter button{
+    flex-grow: 1;
+    height: 50px;
+    font-size: 30px;
+    background-color: lightblue;
+    border: solid darkblue 1px;
+}
+main #knutter button:hover{
+    background-color: #1769a8;
+}
+
+h2  {
+    text-align: center;
+    font-size: 50px;
+}
+
+main p {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+main img {
+    width: 150px;
+}
+
+main select {
+    width: 30px;
+    height: 20px;
+}
+
+main article {
+    display: grid;
+    padding: 30px;
+
+}
+
+form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
+
+#knapp {
+    font-size: 30px;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    background-color: lightblue;
+    border: darkblue 1px solid;
+}
+
+#drakter {
+    width: 200px;
+    height: 40px;
+
+}
+
+
+
+@media(max-width: 1000px){
+    main p {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 600px){
+    main p {
+        grid-template-columns: 1fr;
+    }
+    nav {
+        justify-content: center;
+    }
+    form {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+footer {
+    margin: auto;
+    width: 100%;
+    height: 70px;
+    background-color: #1769a8;
+    border: 1px black solid;
+}
+
+
+

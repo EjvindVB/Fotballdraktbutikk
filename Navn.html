@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrering</title>
+    <link rel="stylesheet" href="Navn.css">
+</head>
+<body>
+
+<nav id="navbar">
+    <a href="index.html">hjem</a>
+
+</nav>
+
+
+<main id="kvittering">
+    <h1>Registrering av kunde</h1>
+    <form action="Ferdigkjøp.html" id="skjema">
+        <label for="navn">Navn:</label>
+        <input type="text" id="navn" required>
+        <br>
+        <label for="adresse">Adresse:</label>
+        <input type="text" id="adresse" required>
+        <br>
+        <button id="bestill">Registrer</button>
+    </form>
+
+</main>
+<footer>
+
+</footer>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAHGMashx7ECCdljy6gGygLznHmn295vTY",
+        authDomain: "fotballbutikk-beb66.firebaseapp.com",
+        databaseURL: "https://fotballbutikk-beb66.firebaseio.com",
+        projectId: "fotballbutikk-beb66",
+        storageBucket: "fotballbutikk-beb66.appspot.com",
+        messagingSenderId: "531465952300"
+    };
+    firebase.initializeApp(config);
+</script>
+<script>
+
+    var navnInp = document.getElementById("navn");
+    var adresseInp = document.getElementById("adresse");
+    var registrerSkjema = document.getElementById("skjema");
+
+    var database = firebase.database();
+    var kundeinfo = database.ref("kundeinfo");
+    var Bestilling = database.ref("Bestilling");
+    var Kontaktinfo = database.ref("Kontaktinfo");
+
+    function registrerInformasjon (event) {
+
+
+        var navn = navnInp.value;
+        var adresse = adresseInp.value;
+
+
+        nyInfo = {
+            "navn": navn,
+            "adresse": adresse
+
+        };
+
+        Kontaktinfo.push(nyInfo);
+        console.log("Heisann");
+    }
+
+
+
+    registrerSkjema.onsubmit = registrerInformasjon;
+
+
+</script>
+</body>
+</html>

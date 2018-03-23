@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kvittering</title>
+    <link rel="stylesheet" href="Ferdigkjøp.css">
+</head>
+<body>
+
+<nav id="navbar"></nav>
+
+<main>
+    <h1>Din bestilling er nå mottat</h1>
+    <article id="draktInfo"></article>
+    <article id="kontaktInfo"></article>
+</main>
+
+
+
+
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAHGMashx7ECCdljy6gGygLznHmn295vTY",
+        authDomain: "fotballbutikk-beb66.firebaseapp.com",
+        databaseURL: "https://fotballbutikk-beb66.firebaseio.com",
+        projectId: "fotballbutikk-beb66",
+        storageBucket: "fotballbutikk-beb66.appspot.com",
+        messagingSenderId: "531465952300"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script>
+
+    var kontaktInfoInp = document.getElementById("kontaktInfo");
+    var draktInfoInp = document.getElementById("draktInfo");
+
+    var database = firebase.database();
+    var Bestilling = database.ref("Bestilling");
+    var kundeinfo = database.ref("kundeinfo");
+    var Kontaktinfo = database.ref("Kontaktinfo");
+
+
+    function visKontaktinfo(snapshot){
+        var nyInfo = snapshot.val();
+
+
+        kontaktInfoInp.innerHTML = `
+        <h3>Kontaktinfo:</h3>
+        Kunde: ${nyInfo.navn} <br> Adresse: ${nyInfo.adresse}
+        `
+
+        console.log("åssen går det");
+
+
+    }
+    function visDraktinfo(snapshot){
+        var nyDrakt = snapshot.val();
+
+        draktInfoInp.innerHTML = `
+        <h2>${nyDrakt.drakt}</h2>
+        <h3>Pris: ${nyDrakt.pris}</h3>
+         <img src="${nyDrakt.bilde}" alt="bilde" id="DraktBilde"> `
+    }
+
+
+    Kontaktinfo.on("child_added", visKontaktinfo);
+    Bestilling.on("child_added", visDraktinfo);
+
+
+
+</script>
+
+</body>
+</html>

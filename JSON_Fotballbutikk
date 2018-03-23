@@ -1,0 +1,84 @@
+{
+  "Fotballdrakter": {
+    "Manchester United drakt": {
+      "pris": 200,
+      "Liga": "Premier league",
+      "navn": [
+        "Lukaku",
+        "Bailly",
+        "Rashford"
+      ],
+      "bilde": "Bilder/Manchesterunited.jpg"
+    },
+    "Atletico Madrid drakt": {
+      "pris": 210,
+      "Liga": "Liga Santander",
+      "navn": [
+        "Griezmann",
+        "Godin",
+        "Torres"
+      ],
+      "bilde": "Bilder/Atleticomadrid.jpg"
+    },
+    "Liverpool drakt": {
+      "pris": 190,
+      "Liga": "Premier league",
+      "navn": [
+        "Salah",
+        "Mane",
+        "Firminho"
+      ],
+      "bilde": "Bilder/Liverpool.jpg"
+    },
+    "Arsenal drakt": {
+      "pris": 170,
+      "Liga": "Premier league",
+      "navn": [
+        "Aubameyang",
+        "Bellerin",
+        "Cech"
+      ],
+      "bilde": "Bilder/Arsenal.jpg"
+    },
+    "Barcelona drakt": {
+      "pris": 250,
+      "Liga": "Liga Santander",
+      "navn": [
+        "Messi",
+        "Suarez",
+        "Iniesta"
+      ],
+      "bilde": "Bilder/Barcelona.jpg"
+    },
+    "Real Madrid drakt": {
+      "pris": 230,
+      "Liga": "Liga Santander",
+      "navn": [
+        "Ronaldo",
+        "Bale",
+        "Modric"
+      ],
+      "bilde": "Bilder/Realmadrid.jpg"
+    },
+    "Tottenham drakt": {
+      "pris": 200,
+      "Liga": "Premier league",
+      "navn": [
+        "Kane",
+        "Alli",
+        "Eriksen"
+      ],
+      "bilde": "Bilder/Tottenham.jpg"
+    },
+    "Valencia drakt": {
+      "pris": 200,
+      "Liga": "Liga Santander",
+      "navn": [
+        "Kondogbia",
+        "Zaza",
+        "Parejo"
+      ],
+      "bilde": "Bilder/Valencia.jpg"
+    }
+  }
+}

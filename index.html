@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="no">
+<link rel="stylesheet" href="index.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Fotballdrakter</title>
+</head>
+<body>
+
+<nav><a href="index.html">Hjem</a></nav>
+
+<main>
+    <h2>Fotball drakter</h2>
+    <div id="knutter">
+        <button onclick="visAlleDrakter()">Alle drakter</button>
+        <button onclick="visLigaSantander()">Liga Santander drakter</button>
+        <button onclick="visPremierleague()">Premier league drakter</button>
+    </div>
+
+    <p id="input"></p>
+
+    <form action="Navn.html" id="skjema">
+        <div><select name="drakter" id="drakter"></select></div>
+        <div><button id="knapp">Kjøp drakt</button></div>
+    </form>
+
+</main>
+<footer>
+
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAHGMashx7ECCdljy6gGygLznHmn295vTY",
+        authDomain: "fotballbutikk-beb66.firebaseapp.com",
+        databaseURL: "https://fotballbutikk-beb66.firebaseio.com",
+        projectId: "fotballbutikk-beb66",
+        storageBucket: "",
+        messagingSenderId: "531465952300"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script>
+
+    var input = document.getElementById("input");
+    var skjemaEl = document.getElementById("skjema");
+    var selectDrakt = document.getElementById("drakter");
+
+    var database = firebase.database();
+    var drakter = database.ref("Fotballdrakter");
+    var Bestilling = database.ref("Bestilling");
+
+    var LokalDraktInfo = {};
+
+    //Hvordan artiklene eller draktene med all informasjon skal komme opp
+
+    function visDrakter(snapshot) {
+        var drakt = snapshot.val();
+        var navn = snapshot.key;
+
+        //endrer på det tomme p elementet med javascript
+
+        input.innerHTML += `<div><img src="${drakt.bilde}" alt="drakt"><h3>${navn}</h3><h3>Pris: ${drakt.pris}</h3><h4>Navn på drakten: <br> ${drakt.navn}</h4></div>`
+
+        console.log("heisann hva skjera");
+
+        LokalDraktInfo[navn] = drakt;
+    }
+    //Henter alle draktene til select menyen
+
+    function hentDrakter(snapshot){
+        var draktNavn = snapshot.key;
+        var DraktInfo = snapshot.val();
+
+        selectDrakt.innerHTML +=
+            `<option value="${draktNavn}">${draktNavn} </option>`
+
+        LokalDraktInfo[draktNavn] = DraktInfo;
+
+    }
+
+            //Legger informasjonen inn i databasen "bestillinger"
+    function registrerDrakter(event) {
+
+        var drakt = selectDrakt.value;
+        var draktInformasjon = LokalDraktInfo[drakt];
+
+
+        var nyBestilling =
+               {"bilde" : draktInformasjon.bilde,
+                "drakt" : drakt,
+                "pris" : draktInformasjon.pris};
+
+        Bestilling.push(nyBestilling);
+        console.log("hva skjer"); }
+
+            //Viser bare premier legaue drakter, sorterer etter liga.
+
+    function visPremierleague() {
+        input.innerHTML = "";
+        drakter
+            .orderByChild("Liga")
+            .equalTo("Premier league")
+            .on("child_added", visDrakter);}
+
+            //Alle drakter skal komme frem
+    function visAlleDrakter() {
+        input.innerHTML = "";
+        drakter
+            .orderByChild("Liga")
+            .on("child_added", visDrakter);}
+
+            //Bare liga santander skal frem
+
+    function visLigaSantander() {
+        input.innerHTML = "";
+        drakter
+            .orderByChild("Liga")
+            .equalTo("Liga Santander")
+            .on("child_added", visDrakter);}
+
+    //Henter informasjonen man velger fra select menyen til databasen "fotballdrakter"
+    drakter.on("child_added", hentDrakter);
+
+    //Når siden laster opp skal alle drakter vises
+
+    document.onload = visAlleDrakter();
+
+    //Skjemaet skal bli registrert når vi "submitter"
+    skjemaEl.onsubmit = registrerDrakter;
+
+
+</script>
+
+</body>
+
+
+</html>
